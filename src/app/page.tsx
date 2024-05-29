@@ -1,5 +1,6 @@
 'use client'
 import { motion } from 'framer-motion'
+import Link from 'next/link'
 
 import Buymeacoffee from '@/components/coffee'
 import {
@@ -21,9 +22,11 @@ export default function Home() {
               whileHover={{ scale: 1.2 }}
               whileTap={{ scale: 0.9 }}
             >
-              <Button size={'lg'} className="text-slate text-lg">
-                Login
-              </Button>
+              <Link href="/dashboard">
+                <Button size={'lg'} className="text-slate text-lg">
+                  Login
+                </Button>
+              </Link>
             </motion.button>
           </div>
         </nav>
@@ -37,7 +40,7 @@ export default function Home() {
           <h2 className="text-slate flex flex-col text-center text-7xl font-medium ">
             Rode seu negócio,{' '}
             <span className="bg-gradient-to-r from-orange-400 from-40% via-orange-500 to-orange-600 to-80% bg-clip-text pb-6 text-transparent">
-              sem se preocupar com seus boletos!
+              sem se preocupar com seus boletos.
             </span>
           </h2>
           <span className="text-slate text-3xl font-light">
