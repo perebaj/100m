@@ -36,15 +36,15 @@ export default function Home() {
         animate={{ opacity: 1, scale: 1.0 }}
         transition={{ ease: 'easeOut', duration: 1 }}
       >
-        <section className="relative mx-auto flex max-w-7xl flex-col items-center p-8 pb-64 pt-64">
-          <h2 className="text-slate flex flex-col text-center text-7xl font-medium ">
-            Rode seu negócio,{' '}
-            <span className="bg-gradient-to-r from-orange-400 from-40% via-orange-500 to-orange-600 to-80% bg-clip-text pb-6 text-transparent">
+        <section className="relative mx-auto flex max-w-5xl flex-col items-center p-8 pb-64 pt-64">
+          <h2 className="text-slate flex flex-col text-center text-6xl font-medium ">
+            Pague seus fornecedores de estoque,{' '}
+            <span className="bg-gradient-to-r from-orange-400 from-40% via-orange-500 to-orange-600 to-80% bg-clip-text pb-6 text-5xl text-transparent">
               sem se preocupar com seus boletos.
             </span>
           </h2>
           <span className="text-slate text-3xl font-light">
-            Encontre fornecedores, compre, venda e pague só depois!
+            Compre, venda e pague só depois!
           </span>
         </section>
       </motion.div>
@@ -112,13 +112,10 @@ export default function Home() {
       </section>
       <footer>
         <div className="flex flex-col items-center justify-center pb-4 pt-8 text-sm">
-          <h4 className="text-slate text-lg">
+          <h4 className="text-slate">
             Made with ❤️ by{' '}
-            <a
-              href="https://github.com/perebaj"
-              className="no-underline hover:underline"
-            >
-              J²
+            <a href="" className="no-underline hover:underline">
+              Credit Team
             </a>{' '}
           </h4>
         </div>

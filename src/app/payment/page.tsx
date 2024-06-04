@@ -14,12 +14,33 @@ export default function Payment() {
   const [isAcceptedBoleto, setIsAcceptedBoleto] = useState(true)
   const [loadingBoleto, setLoadingBoleto] = useState(false)
 
+  const [isPaymentConfirmedPix, setIsPaymentConfirmedPix] = useState(false)
+  const [loadingPaymentPix, setLoadingPaymentPix] = useState(false)
+  const handlePaymentConfirmPix = () => {
+    setLoadingPaymentPix(true)
+    setTimeout(() => {
+      setLoadingPaymentPix(false)
+      setIsPaymentConfirmedPix(!isPaymentConfirmedPix)
+    }, 1000)
+  }
+
+  const [isPaymentConfirmedBoleto, setIsPaymentConfirmedBoleto] =
+    useState(false)
+  const [loadingPaymentBoleto, setLoadingPaymentBoleto] = useState(false)
+  const handlePaymentConfirmBoleto = () => {
+    setLoadingPaymentBoleto(true)
+    setTimeout(() => {
+      setLoadingPaymentBoleto(false)
+      setIsPaymentConfirmedBoleto(!isPaymentConfirmedBoleto)
+    }, 1000)
+  }
+
   const handleAcceptPix = () => {
     setLoadingPix(true)
     setTimeout(() => {
       setLoadingPix(false)
       setIsAcceptedPix(!isAcceptedPix)
-    }, 3000)
+    }, 500)
   }
 
   const handleAcceptBoleto = () => {
@@ -27,7 +48,7 @@ export default function Payment() {
     setTimeout(() => {
       setLoadingBoleto(false)
       setIsAcceptedBoleto(!isAcceptedBoleto)
-    }, 3000)
+    }, 500)
   }
 
   return (
@@ -110,6 +131,9 @@ export default function Payment() {
                     </div>
                   </Label>
                 </div>
+                <Button className="w-full" onClick={handlePaymentConfirmPix}>
+                  {loadingPaymentPix ? 'Carregando...' : 'Confirmar Pagamento'}
+                </Button>
               </RadioGroup>
             </>
           )}
@@ -189,6 +213,11 @@ export default function Payment() {
                     </div>
                   </Label>
                 </div>
+                <Button className="w-full" onClick={handlePaymentConfirmBoleto}>
+                  {loadingPaymentBoleto
+                    ? 'Carregando...'
+                    : 'Confirmar Pagamento'}
+                </Button>
               </RadioGroup>
             </>
           )}
