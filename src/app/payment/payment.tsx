@@ -1,6 +1,7 @@
 'use client'
 import { useState } from 'react'
 
+import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import { Card } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
@@ -8,7 +9,6 @@ import { Label } from '@/components/ui/label'
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 
-// import { useToast } from '@/components/ui/use-toast'
 import SuccessPayment from './sucess_payment'
 
 export default function Payment() {
@@ -16,27 +16,6 @@ export default function Payment() {
   const [loadingPix, setLoadingPix] = useState(false)
   const [isAcceptedBoleto, setIsAcceptedBoleto] = useState(true)
   const [loadingBoleto, setLoadingBoleto] = useState(false)
-
-  // const [isPaymentConfirmedPix, setIsPaymentConfirmedPix] = useState(false)
-  // const [loadingPaymentPix, setLoadingPaymentPix] = useState(false)
-  // const handlePaymentConfirmPix = () => {
-  //   setLoadingPaymentPix(true)
-  //   setTimeout(() => {
-  //     setLoadingPaymentPix(false)
-  //     setIsPaymentConfirmedPix(!isPaymentConfirmedPix)
-  //   }, 1000)
-  // }
-
-  // const [isPaymentConfirmedBoleto, setIsPaymentConfirmedBoleto] =
-  //   useState(false)
-  // const [loadingPaymentBoleto, setLoadingPaymentBoleto] = useState(false)
-  // const handlePaymentConfirmBoleto = () => {
-  //   setLoadingPaymentBoleto(true)
-  //   setTimeout(() => {
-  //     setLoadingPaymentBoleto(false)
-  //     setIsPaymentConfirmedBoleto(!isPaymentConfirmedBoleto)
-  //   }, 1000)
-  // }
 
   const handleAcceptPix = () => {
     setLoadingPix(true)
@@ -75,8 +54,11 @@ export default function Payment() {
             <>
               <div className="grid gap-2">
                 <h3 className="text-lg font-semibold">Pagamento via PIX</h3>
-                <p className="text-gray-500 dark:text-gray-400">
+                <p className="p-4 text-gray-500 dark:text-gray-400">
                   Escolha a melhor opção de parcelamento para você.
+                </p>
+                <p className="pb-2">
+                  Valor original: <Badge variant="outline">R$100,00</Badge>
                 </p>
               </div>
               <RadioGroup className="grid gap-4" defaultValue="weekly">
@@ -95,6 +77,7 @@ export default function Payment() {
                       <div className="text-sm text-gray-500 dark:text-gray-400">
                         4 parcelas de R$25,00
                       </div>
+                      <Badge variant="outline">2% sobre o total</Badge>
                     </div>
                   </Label>
                 </div>
@@ -113,6 +96,7 @@ export default function Payment() {
                       <div className="text-sm text-gray-500 dark:text-gray-400">
                         2 parcelas de R$50,00
                       </div>
+                      <Badge variant="outline">2.5% sobre o total</Badge>
                     </div>
                   </Label>
                 </div>
@@ -131,6 +115,7 @@ export default function Payment() {
                       <div className="text-sm text-gray-500 dark:text-gray-400">
                         1 parcela de R$100,00
                       </div>
+                      <Badge variant="outline">3% sobre o total</Badge>
                     </div>
                   </Label>
                 </div>
@@ -158,6 +143,9 @@ export default function Payment() {
                 <p className="text-gray-500 dark:text-gray-400">
                   Escolha a melhor opção de parcelamento para você.
                 </p>
+                <p className="pb-2">
+                  Valor original: <Badge variant="outline">R$100,00</Badge>
+                </p>
               </div>
               <RadioGroup className="grid gap-4" defaultValue="weekly">
                 <div>
@@ -175,6 +163,7 @@ export default function Payment() {
                       <div className="text-sm text-gray-500 dark:text-gray-400">
                         4 parcelas de R$25,00
                       </div>
+                      <Badge variant="outline">2% sobre o total</Badge>
                     </div>
                   </Label>
                 </div>
@@ -193,6 +182,7 @@ export default function Payment() {
                       <div className="text-sm text-gray-500 dark:text-gray-400">
                         2 parcelas de R$50,00
                       </div>
+                      <Badge variant="outline">2.5% sobre o total</Badge>
                     </div>
                   </Label>
                 </div>
@@ -211,6 +201,7 @@ export default function Payment() {
                       <div className="text-sm text-gray-500 dark:text-gray-400">
                         1 parcela de R$100,00
                       </div>
+                      <Badge variant="outline">3% sobre o total</Badge>
                     </div>
                   </Label>
                 </div>

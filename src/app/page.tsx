@@ -10,6 +10,8 @@ import {
   AccordionTrigger,
 } from '@/components/ui/accordion'
 import { Button } from '@/components/ui/button'
+
+import Payment from './payment/payment'
 export default function Home() {
   return (
     <div>
@@ -36,7 +38,7 @@ export default function Home() {
         animate={{ opacity: 1, scale: 1.0 }}
         transition={{ ease: 'easeOut', duration: 1 }}
       >
-        <section className="relative mx-auto flex max-w-5xl flex-col items-center p-8 pb-64 pt-64">
+        <section className="relative mx-auto flex max-w-5xl flex-col items-center p-8 pb-24 pt-24">
           <h2 className="text-slate flex flex-col text-center text-6xl font-medium ">
             Pague seus fornecedores de estoque,{' '}
             <span className="bg-gradient-to-r from-orange-400 from-40% via-orange-500 to-orange-600 to-80% bg-clip-text pb-6 text-5xl text-transparent">
@@ -48,6 +50,9 @@ export default function Home() {
           </span>
         </section>
       </motion.div>
+      <section id="payment" className="bg-slate-50 bg-opacity-40 pb-16 pt-16">
+        <Payment />
+      </section>
       <section id="faq">
         <div className="mx-auto flex max-w-7xl flex-row gap-12 px-8 py-32">
           <div className="flex basis-1/2 flex-col text-left">
@@ -102,7 +107,8 @@ export default function Home() {
                 </AccordionTrigger>
                 <AccordionContent>
                   <p className="text-slate text-lg">
-                    Nos cobramos uma taxa de 2% ao mês sobre o valor da compra.
+                    Nos cobramos uma taxa entre 2% e 3% do valor total da
+                    compra, dependendo da forma de pagamento escolhida.
                   </p>
                 </AccordionContent>
               </AccordionItem>
@@ -110,6 +116,7 @@ export default function Home() {
           </ul>
         </div>
       </section>
+
       <footer>
         <div className="flex flex-col items-center justify-center pb-4 pt-8 text-sm">
           <h4 className="text-slate">

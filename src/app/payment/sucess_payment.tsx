@@ -23,16 +23,6 @@ export default function SuccessPayment() {
     }, 2000) // Simulate a 2-second API call
   }
 
-  //   useEffect(() => {
-  //     if (isDialogOpen) {
-  //       const timer = setTimeout(() => {
-  //         setIsDialogOpen(false)
-  //       }, 5000) // Close the dialog after 5 seconds
-
-  //       return () => clearTimeout(timer) // Clean up the timer on component unmount or dialog close
-  //     }
-  //   }, [isDialogOpen])
-
   return (
     <div>
       <Button
