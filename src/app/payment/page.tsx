@@ -8,32 +8,35 @@ import { Label } from '@/components/ui/label'
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 
+// import { useToast } from '@/components/ui/use-toast'
+import SuccessPayment from './sucess_payment'
+
 export default function Payment() {
   const [isAcceptedPix, setIsAcceptedPix] = useState(true)
   const [loadingPix, setLoadingPix] = useState(false)
   const [isAcceptedBoleto, setIsAcceptedBoleto] = useState(true)
   const [loadingBoleto, setLoadingBoleto] = useState(false)
 
-  const [isPaymentConfirmedPix, setIsPaymentConfirmedPix] = useState(false)
-  const [loadingPaymentPix, setLoadingPaymentPix] = useState(false)
-  const handlePaymentConfirmPix = () => {
-    setLoadingPaymentPix(true)
-    setTimeout(() => {
-      setLoadingPaymentPix(false)
-      setIsPaymentConfirmedPix(!isPaymentConfirmedPix)
-    }, 1000)
-  }
+  // const [isPaymentConfirmedPix, setIsPaymentConfirmedPix] = useState(false)
+  // const [loadingPaymentPix, setLoadingPaymentPix] = useState(false)
+  // const handlePaymentConfirmPix = () => {
+  //   setLoadingPaymentPix(true)
+  //   setTimeout(() => {
+  //     setLoadingPaymentPix(false)
+  //     setIsPaymentConfirmedPix(!isPaymentConfirmedPix)
+  //   }, 1000)
+  // }
 
-  const [isPaymentConfirmedBoleto, setIsPaymentConfirmedBoleto] =
-    useState(false)
-  const [loadingPaymentBoleto, setLoadingPaymentBoleto] = useState(false)
-  const handlePaymentConfirmBoleto = () => {
-    setLoadingPaymentBoleto(true)
-    setTimeout(() => {
-      setLoadingPaymentBoleto(false)
-      setIsPaymentConfirmedBoleto(!isPaymentConfirmedBoleto)
-    }, 1000)
-  }
+  // const [isPaymentConfirmedBoleto, setIsPaymentConfirmedBoleto] =
+  //   useState(false)
+  // const [loadingPaymentBoleto, setLoadingPaymentBoleto] = useState(false)
+  // const handlePaymentConfirmBoleto = () => {
+  //   setLoadingPaymentBoleto(true)
+  //   setTimeout(() => {
+  //     setLoadingPaymentBoleto(false)
+  //     setIsPaymentConfirmedBoleto(!isPaymentConfirmedBoleto)
+  //   }, 1000)
+  // }
 
   const handleAcceptPix = () => {
     setLoadingPix(true)
@@ -131,9 +134,7 @@ export default function Payment() {
                     </div>
                   </Label>
                 </div>
-                <Button className="w-full" onClick={handlePaymentConfirmPix}>
-                  {loadingPaymentPix ? 'Carregando...' : 'Confirmar Pagamento'}
-                </Button>
+                <SuccessPayment />
               </RadioGroup>
             </>
           )}
@@ -213,11 +214,7 @@ export default function Payment() {
                     </div>
                   </Label>
                 </div>
-                <Button className="w-full" onClick={handlePaymentConfirmBoleto}>
-                  {loadingPaymentBoleto
-                    ? 'Carregando...'
-                    : 'Confirmar Pagamento'}
-                </Button>
+                <SuccessPayment />
               </RadioGroup>
             </>
           )}
