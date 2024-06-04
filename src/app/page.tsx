@@ -71,8 +71,9 @@ export default function Home() {
                 </AccordionTrigger>
                 <AccordionContent>
                   <p className="text-slate text-lg">
-                    Somos um meio de pagamento entre lojistas e fornecedores que
-                    dá mais prazo e flexibilidade para o comprador.
+                    Somos um meio de pagamento entre o lojista e o fornecedor
+                    que permite dá mais prazo e flexibilidade para rodar seu
+                    negócio.
                   </p>
                 </AccordionContent>
               </AccordionItem>
@@ -85,8 +86,8 @@ export default function Home() {
                     Você faz suas compras de estoque em qualquer fornecedor e
                     envia os dados de pagamento (boleto ou PIX) para o FlexPay.
                     Nos pagamos suas compras e adicionamos o valor em seu
-                    próximo vencimento semanal, com uma taxa de apenas 2% sobre
-                    cada nota emitida.
+                    próximo vencimento, com uma taxa de apenas 2% sobre cada
+                    nota emitida.
                   </p>
                 </AccordionContent>
               </AccordionItem>
@@ -97,7 +98,7 @@ export default function Home() {
                 <AccordionContent>
                   <p className="text-slate text-lg">
                     Para aqueles que querem mais prazo e flexibilidade para
-                    rodar seu negócio. Comprei agora, pague só depois!
+                    rodar seu negócio. Comprei agora e pague só depois!
                   </p>
                 </AccordionContent>
               </AccordionItem>
@@ -107,8 +108,8 @@ export default function Home() {
                 </AccordionTrigger>
                 <AccordionContent>
                   <p className="text-slate text-lg">
-                    Nos cobramos uma taxa entre 2% e 3% do valor total da
-                    compra, dependendo da forma de pagamento escolhida.
+                    Dependendo da forma de pagamento escolhida, cobramos uma
+                    taxa entre 2% e 3% do valor total da compra.
                   </p>
                 </AccordionContent>
               </AccordionItem>
