@@ -78,8 +78,7 @@ export default function Home() {
                 <AccordionContent>
                   <p className="text-slate text-lg">
                     Somos um meio de pagamento entre o lojista e o fornecedor
-                    que permite dá mais prazo e flexibilidade para rodar seu
-                    negócio.
+                    que dá mais prazo e flexibilidade para rodar seu negócio.
                   </p>
                 </AccordionContent>
               </AccordionItem>
