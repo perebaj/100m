@@ -167,10 +167,6 @@ export default function Payment() {
                       <Badge variant="outline">2% sobre o total</Badge>
                     </div>
                   </Label>
-                  {/* <Badge variant="outline">
-                      Valor total a ser pago:{' '}
-                      {transactionAmountPix ? transactionAmountPix * 1.02 : 0}
-                    </Badge> */}
                 </div>
                 <div>
                   <RadioGroupItem
@@ -305,7 +301,7 @@ export default function Payment() {
                     </div>
                   </Label>
                 </div>
-                <SuccessPayment />
+                <SuccessPayment merchantName="" transactionAmount={0} />
               </RadioGroup>
             </>
           )}
