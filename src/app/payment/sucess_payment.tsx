@@ -10,7 +10,15 @@ import {
   DialogTitle,
 } from '@/components/ui/dialog'
 
-export default function SuccessPayment() {
+interface SuccessPaymentProps {
+  merchantName: string // Define a propriedade merchantName como uma string
+  transactionAmount: number
+}
+
+export default function SuccessPayment({
+  merchantName,
+  transactionAmount,
+}: SuccessPaymentProps) {
   const [loadingPayment, setLoadingPaymentPix] = useState(false)
   const [isDialogOpen, setIsDialogOpen] = useState(false)
 
@@ -44,8 +52,9 @@ export default function SuccessPayment() {
             height={300}
           />
           <DialogDescription className="py-4">
-            Seu pagamento de R$99,99 feito no fornecedor Acme Circles foi
-            processado com sucesso. Obrigado por usar FlexPay!
+            Seu pagamento de R${transactionAmount} feito no fornecedor{' '}
+            {merchantName} foi processado com sucesso. Obrigado por usar
+            FlexPay!
           </DialogDescription>
         </DialogContent>
       </Dialog>

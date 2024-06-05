@@ -51,6 +51,9 @@ export default function Home() {
         </section>
       </motion.div>
       <section id="payment" className="bg-slate-50 bg-opacity-40 pb-16 pt-16">
+        <h1 className="flex flex-col items-center justify-center p-4 text-2xl">
+          Escolha como você quer pagar seus fornecedores
+        </h1>
         <Payment />
       </section>
       <section id="faq">

@@ -11,18 +11,55 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 
 import SuccessPayment from './sucess_payment'
 
+interface MerchantAccountInformation {
+  Tag: string
+  Length: string
+  Value: string
+}
+
+interface PixData {
+  PayloadFormatIndicator: string
+  PointOfInitiationMethod: string
+  MerchantAccountInformation: MerchantAccountInformation[]
+  MerchantCategoryCode: string
+  TransactionCurrency: string
+  TransactionAmount: string
+  TipOrConvenienceIndicator: string
+  ValueOfConvenienceFeeFixed: string
+  ValueOfConvenienceFeePercentage: string
+  CountryCode: string
+  MerchantName: string
+  MerchantCity: string
+  PostalCode: string
+  AdditionalDataFieldTemplate: string
+  MerchantInformation: {
+    Language: string
+    Name: string
+    City: string
+    Valid: boolean
+  }
+  UnreservedTemplates: null
+}
+
+interface PaymentResponse {
+  transaction_id: string
+  pix_data: PixData
+}
+
 export default function Payment() {
   const [isAcceptedPix, setIsAcceptedPix] = useState(true)
   const [loadingPix, setLoadingPix] = useState(false)
   const [isAcceptedBoleto, setIsAcceptedBoleto] = useState(true)
   const [loadingBoleto, setLoadingBoleto] = useState(false)
+  const [barCode, setBarCode] = useState('')
 
   const handleAcceptPix = () => {
     setLoadingPix(true)
     setTimeout(() => {
       setLoadingPix(false)
       setIsAcceptedPix(!isAcceptedPix)
-    }, 500)
+      sendPaymentRequestPix(barCode)
+    }, 3000)
   }
 
   const handleAcceptBoleto = () => {
@@ -30,7 +67,47 @@ export default function Payment() {
     setTimeout(() => {
       setLoadingBoleto(false)
       setIsAcceptedBoleto(!isAcceptedBoleto)
-    }, 500)
+    }, 3000)
+  }
+
+  const [transactionAmountPix, setTransactionAmountPix] = useState<
+    number | null
+  >(null)
+  const [merchantNamePix, setMerchantNamePix] = useState<string | null>('')
+  const sendPaymentRequestPix = async (barCode: string) => {
+    console.log(barCode)
+    try {
+      const response = await fetch('/pay', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ bar_code: barCode }),
+      })
+      if (response.ok) {
+        const data: PaymentResponse = await response.json()
+        // setPaymentResponse(data)
+        console.log(data.pix_data.MerchantName)
+        console.log(data.pix_data.TransactionAmount)
+        setMerchantNamePix(data.pix_data.MerchantName)
+        const parsedTransactionAmountPix = parseFloat(
+          data.pix_data.TransactionAmount,
+        )
+
+        setTransactionAmountPix(Number(parsedTransactionAmountPix.toFixed(2)))
+        // const semanal = (parsedTransactionAmountPix * 0.02) / 4
+        // const quinzenal = (parsedTransactionAmountPix * 0.025) / 2
+        // const mensal = (parsedTransactionAmountPix * 0.03) / 1
+
+        console.log('Payment successful:', data)
+      } else {
+        console.log(response.body)
+        console.log(response.headers)
+        console.error('Payment failed')
+      }
+    } catch (error) {
+      console.error('Error:', error)
+    }
   }
 
   return (
@@ -43,7 +120,13 @@ export default function Payment() {
         <Card className="space-y-4 p-6">
           <div className="grid w-full max-w-sm items-center gap-1.5">
             <Label htmlFor="pixcode">Entre com o código do PIX</Label>
-            <Input type="text" id="pixcode" placeholder="Código PIX" />
+            <Input
+              type="text"
+              id="pixcode"
+              placeholder="Código PIX"
+              value={barCode}
+              onChange={(e) => setBarCode(e.target.value)}
+            />
           </div>
           {isAcceptedPix && (
             <Button className="w-full" onClick={handleAcceptPix}>
@@ -58,7 +141,8 @@ export default function Payment() {
                   Escolha a melhor opção de parcelamento para você.
                 </p>
                 <p className="pb-2">
-                  Valor original: <Badge variant="outline">R$100,00</Badge>
+                  Valor original:{' '}
+                  <Badge variant="outline">{transactionAmountPix}</Badge>
                 </p>
               </div>
               <RadioGroup className="grid gap-4" defaultValue="weekly">
@@ -75,11 +159,18 @@ export default function Payment() {
                     <div className="flex items-center gap-3">
                       <div className="font-semibold">Semanal</div>
                       <div className="text-sm text-gray-500 dark:text-gray-400">
-                        4 parcelas de R$25,00
+                        4 parcelas de R$
+                        {transactionAmountPix
+                          ? (transactionAmountPix * 1.02) / 4
+                          : 0}
                       </div>
                       <Badge variant="outline">2% sobre o total</Badge>
                     </div>
                   </Label>
+                  {/* <Badge variant="outline">
+                      Valor total a ser pago:{' '}
+                      {transactionAmountPix ? transactionAmountPix * 1.02 : 0}
+                    </Badge> */}
                 </div>
                 <div>
                   <RadioGroupItem
@@ -94,7 +185,10 @@ export default function Payment() {
                     <div className="flex items-center gap-3">
                       <div className="font-semibold">Quinzenal</div>
                       <div className="text-sm text-gray-500 dark:text-gray-400">
-                        2 parcelas de R$50,00
+                        2 parcelas de R$
+                        {transactionAmountPix
+                          ? (transactionAmountPix * 1.025) / 2
+                          : 0}
                       </div>
                       <Badge variant="outline">2.5% sobre o total</Badge>
                     </div>
@@ -113,13 +207,19 @@ export default function Payment() {
                     <div className="flex items-center gap-3">
                       <div className="font-semibold">Mensal</div>
                       <div className="text-sm text-gray-500 dark:text-gray-400">
-                        1 parcela de R$100,00
+                        1 parcela de R$
+                        {transactionAmountPix
+                          ? (transactionAmountPix * 1.03) / 1
+                          : 0}
                       </div>
                       <Badge variant="outline">3% sobre o total</Badge>
                     </div>
                   </Label>
                 </div>
-                <SuccessPayment />
+                <SuccessPayment
+                  merchantName={merchantNamePix ?? ''}
+                  transactionAmount={transactionAmountPix ?? 0}
+                />
               </RadioGroup>
             </>
           )}
