@@ -40,6 +40,19 @@ export default function Home() {
           </span>
         </section>
       </motion.div>
+      {/* <section id="video" className="flex h-screen items-center justify-center">
+        <iframe
+          class="max-w-full"
+          width="640"
+          height="400"
+          src="https://www.loom.com/embed/b25378a5236b481ab40e475147675ac1?sid=d135da61-f494-44ad-b270-fe50cd7c77ea"
+          frameborder="0"
+          webkitallowfullscreen
+          mozallowfullscreen
+          allowfullscreen
+        ></iframe>
+      </section> */}
+
       <section id="payment" className="bg-slate-50 bg-opacity-40 pb-16 pt-16">
         <h1 className="flex flex-col items-center justify-center p-4 text-2xl">
           Escolha como você quer pagar seus fornecedores
@@ -79,8 +92,8 @@ export default function Home() {
                     Você faz suas compras de estoque em qualquer fornecedor e
                     envia os dados de pagamento (boleto ou PIX) para o Single
                     Player. Nos pagamos suas compras e adicionamos o valor em
-                    seu próximo vencimento, com uma taxa de apenas 2% sobre cada
-                    nota emitida.
+                    seu próximo vencimento, com uma taxa entre 2% e 3%
+                    dependendo da forma de pagamento escolhida.
                   </p>
                 </AccordionContent>
               </AccordionItem>
@@ -110,7 +123,6 @@ export default function Home() {
           </ul>
         </div>
       </section>
-
       <footer>
         <div className="flex flex-col items-center justify-center pb-4 pt-8 text-sm">
           <h4 className="text-slate">
