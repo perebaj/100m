@@ -18,7 +18,7 @@ export default function Home() {
       <header>
         <nav className="mx-auto flex max-w-7xl px-32 py-3 text-xl">
           <span className="text-slate align-center flex flex-col items-center justify-center text-2xl">
-            Single-player
+            Single Player
           </span>
           <Buymeacoffee />
         </nav>
@@ -60,7 +60,7 @@ export default function Home() {
             <Accordion type="single" collapsible className="text-lg">
               <AccordionItem value="item-1">
                 <AccordionTrigger className="text-start font-bold text-primary">
-                  O que é o Single-player?
+                  O que é o Single Player?
                 </AccordionTrigger>
                 <AccordionContent>
                   <p className="text-slate text-lg">
@@ -77,16 +77,16 @@ export default function Home() {
                 <AccordionContent>
                   <p className="text-slate text-lg">
                     Você faz suas compras de estoque em qualquer fornecedor e
-                    envia os dados de pagamento (boleto ou PIX) para o
-                    Single-player. Nos pagamos suas compras e adicionamos o
-                    valor em seu próximo vencimento, com uma taxa de apenas 2%
-                    sobre cada nota emitida.
+                    envia os dados de pagamento (boleto ou PIX) para o Single
+                    Player. Nos pagamos suas compras e adicionamos o valor em
+                    seu próximo vencimento, com uma taxa de apenas 2% sobre cada
+                    nota emitida.
                   </p>
                 </AccordionContent>
               </AccordionItem>
               <AccordionItem value="item-3">
                 <AccordionTrigger className="text-start font-bold text-primary">
-                  Para qual público o Single-player é designado?
+                  Para qual público o Single Player é designado?
                 </AccordionTrigger>
                 <AccordionContent>
                   <p className="text-slate text-lg">
@@ -97,7 +97,7 @@ export default function Home() {
               </AccordionItem>
               <AccordionItem value="item-4">
                 <AccordionTrigger className="text-start font-bold text-primary">
-                  Quanto o Single-player custa?
+                  Quanto o Single Player custa?
                 </AccordionTrigger>
                 <AccordionContent>
                   <p className="text-slate text-lg">

@@ -53,8 +53,8 @@ export default function SuccessPayment({
           />
           <DialogDescription className="py-4">
             Seu pagamento de R${transactionAmount} feito no fornecedor{' '}
-            {merchantName} foi processado com sucesso. Obrigado por usar
-            Single-player!
+            {merchantName} foi processado com sucesso. Obrigado por usar Single
+            Player!
           </DialogDescription>
         </DialogContent>
       </Dialog>
