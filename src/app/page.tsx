@@ -40,18 +40,15 @@ export default function Home() {
           </span>
         </section>
       </motion.div>
-      {/* <section id="video" className="flex h-screen items-center justify-center">
+      <section id="video" className="flex h-screen items-center justify-center">
         <iframe
-          class="max-w-full"
           width="640"
           height="400"
-          src="https://www.loom.com/embed/b25378a5236b481ab40e475147675ac1?sid=d135da61-f494-44ad-b270-fe50cd7c77ea"
-          frameborder="0"
-          webkitallowfullscreen
-          mozallowfullscreen
-          allowfullscreen
+          src="https://www.loom.com/embed/80f47b3ec56043c4912bb6cb426d55c5?sid=428da4f1-bd24-473b-b6c2-c37056aa3a8f"
+          frameBorder="0"
+          allowFullScreen
         ></iframe>
-      </section> */}
+      </section>
 
       <section id="payment" className="bg-slate-50 bg-opacity-40 pb-16 pt-16">
         <h1 className="flex flex-col items-center justify-center p-4 text-2xl">
