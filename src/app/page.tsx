@@ -77,8 +77,8 @@ export default function Home() {
                 </AccordionTrigger>
                 <AccordionContent>
                   <p className="text-slate text-lg">
-                    Somos um meio de pagamento entre o lojista e o fornecedor
-                    que dá mais prazo e flexibilidade para rodar seu negócio.
+                    Pagamos seus boletos de fornecedores de estoque, o que te dá
+                    mais prazo e flexibilidade para rodar seu negócio.
                   </p>
                 </AccordionContent>
               </AccordionItem>
