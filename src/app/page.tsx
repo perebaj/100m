@@ -1,7 +1,7 @@
 'use client'
 import { motion } from 'framer-motion'
-import Link from 'next/link'
 
+// import Link from 'next/link'
 import Buymeacoffee from '@/components/coffee'
 import {
   Accordion,
@@ -9,28 +9,18 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from '@/components/ui/accordion'
-import { Button } from '@/components/ui/button'
 
+// import { Button } from '@/components/ui/button'
 import Payment from './payment/payment'
 export default function Home() {
   return (
     <div>
       <header>
-        <nav className="mx-auto flex max-w-7xl items-center justify-center px-32 py-3 text-xl">
-          <span className="text-slate flex-1 text-2xl">FlexPay</span>
+        <nav className="mx-auto flex max-w-7xl px-32 py-3 text-xl">
+          <span className="text-slate align-center flex flex-col items-center justify-center text-2xl">
+            FlexPay
+          </span>
           <Buymeacoffee />
-          <div className="flex flex-1 justify-end">
-            <motion.button
-              whileHover={{ scale: 1.2 }}
-              whileTap={{ scale: 0.9 }}
-            >
-              <Link href="/dashboard">
-                <Button size={'lg'} className="text-slate text-lg">
-                  Login
-                </Button>
-              </Link>
-            </motion.button>
-          </div>
         </nav>
       </header>
       <motion.div

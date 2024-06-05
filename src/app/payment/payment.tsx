@@ -53,27 +53,46 @@ export default function Payment() {
   const [isAcceptedBoleto, setIsAcceptedBoleto] = useState(true)
   const [loadingBoleto, setLoadingBoleto] = useState(false)
   const [barCode, setBarCode] = useState('')
-
-  // const handleAcceptPix = () => {
-  //   setLoadingPix(true)
-  //   setTimeout(() => {
-  //     setLoadingPix(false)
-  //     setIsAcceptedPix(!isAcceptedPix)
-  //     sendPaymentRequestPix(barCode)
-  //   }, 3000)
-  // }
-
-  const handleAcceptBoleto = () => {
-    setLoadingBoleto(true)
-    setTimeout(() => {
-      setLoadingBoleto(false)
-      setIsAcceptedBoleto(!isAcceptedBoleto)
-    }, 1000)
-  }
-
   const [transactionAmountPix, setTransactionAmountPix] = useState<
     number | null
   >(null)
+
+  const sendPaymentRequestBoleto = async (barCode: string) => {
+    setLoadingBoleto(true)
+    console.log(barCode)
+    if (!barCode) {
+      toast.error('Código Boleto inválido')
+      setLoadingBoleto(false)
+      return
+    }
+    try {
+      const response = await fetch('/pay/boleto', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ bar_code: barCode }),
+      })
+      if (response.ok) {
+        const data: PaymentResponse = await response.json()
+
+        setIsAcceptedBoleto(false)
+        setLoadingBoleto(false)
+
+        console.log('Payment successful:', data)
+      } else {
+        console.log(response.body)
+        console.log(response.headers)
+        setLoadingPix(false)
+        toast.error('Código Boleto inválido!')
+        console.error('Payment failed')
+      }
+    } catch (error) {
+      setLoadingPix(false)
+      console.error('Error:', error)
+    }
+  }
+
   const [merchantNamePix, setMerchantNamePix] = useState<string | null>('')
   const sendPaymentRequestPix = async (barCode: string) => {
     setLoadingPix(true)
@@ -102,9 +121,6 @@ export default function Payment() {
         setIsAcceptedPix(false)
         setLoadingPix(false)
         setTransactionAmountPix(Number(parsedTransactionAmountPix.toFixed(2)))
-        // const semanal = (parsedTransactionAmountPix * 0.02) / 4
-        // const quinzenal = (parsedTransactionAmountPix * 0.025) / 2
-        // const mensal = (parsedTransactionAmountPix * 0.03) / 1
 
         console.log('Payment successful:', data)
       } else {
@@ -241,7 +257,10 @@ export default function Payment() {
             <Input type="text" id="boletocode" placeholder="Código Boleto" />
           </div>
           {isAcceptedBoleto && (
-            <Button className="w-full" onClick={handleAcceptBoleto}>
+            <Button
+              className="w-full"
+              onClick={() => sendPaymentRequestBoleto(barCode)}
+            >
               {loadingBoleto ? 'Carregando...' : 'Continuar'}
             </Button>
           )}
