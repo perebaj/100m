@@ -1,5 +1,6 @@
 'use client'
 import { useState } from 'react'
+import { toast } from 'sonner'
 
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
@@ -53,21 +54,21 @@ export default function Payment() {
   const [loadingBoleto, setLoadingBoleto] = useState(false)
   const [barCode, setBarCode] = useState('')
 
-  const handleAcceptPix = () => {
-    setLoadingPix(true)
-    setTimeout(() => {
-      setLoadingPix(false)
-      setIsAcceptedPix(!isAcceptedPix)
-      sendPaymentRequestPix(barCode)
-    }, 3000)
-  }
+  // const handleAcceptPix = () => {
+  //   setLoadingPix(true)
+  //   setTimeout(() => {
+  //     setLoadingPix(false)
+  //     setIsAcceptedPix(!isAcceptedPix)
+  //     sendPaymentRequestPix(barCode)
+  //   }, 3000)
+  // }
 
   const handleAcceptBoleto = () => {
     setLoadingBoleto(true)
     setTimeout(() => {
       setLoadingBoleto(false)
       setIsAcceptedBoleto(!isAcceptedBoleto)
-    }, 3000)
+    }, 1000)
   }
 
   const [transactionAmountPix, setTransactionAmountPix] = useState<
@@ -75,7 +76,13 @@ export default function Payment() {
   >(null)
   const [merchantNamePix, setMerchantNamePix] = useState<string | null>('')
   const sendPaymentRequestPix = async (barCode: string) => {
+    setLoadingPix(true)
     console.log(barCode)
+    if (!barCode) {
+      toast.error('Código PIX inválido')
+      setLoadingPix(false)
+      return
+    }
     try {
       const response = await fetch('/pay', {
         method: 'POST',
@@ -86,14 +93,14 @@ export default function Payment() {
       })
       if (response.ok) {
         const data: PaymentResponse = await response.json()
-        // setPaymentResponse(data)
         console.log(data.pix_data.MerchantName)
         console.log(data.pix_data.TransactionAmount)
         setMerchantNamePix(data.pix_data.MerchantName)
         const parsedTransactionAmountPix = parseFloat(
           data.pix_data.TransactionAmount,
         )
-
+        setIsAcceptedPix(false)
+        setLoadingPix(false)
         setTransactionAmountPix(Number(parsedTransactionAmountPix.toFixed(2)))
         // const semanal = (parsedTransactionAmountPix * 0.02) / 4
         // const quinzenal = (parsedTransactionAmountPix * 0.025) / 2
@@ -103,9 +110,12 @@ export default function Payment() {
       } else {
         console.log(response.body)
         console.log(response.headers)
+        setLoadingPix(false)
+        toast.error('Código PIX inválido!')
         console.error('Payment failed')
       }
     } catch (error) {
+      setLoadingPix(false)
       console.error('Error:', error)
     }
   }
@@ -129,7 +139,10 @@ export default function Payment() {
             />
           </div>
           {isAcceptedPix && (
-            <Button className="w-full" onClick={handleAcceptPix}>
+            <Button
+              className="w-full"
+              onClick={() => sendPaymentRequestPix(barCode)}
+            >
               {loadingPix ? 'Carregando...' : 'Continuar'}
             </Button>
           )}
