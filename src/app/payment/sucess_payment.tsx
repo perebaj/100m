@@ -54,7 +54,7 @@ export default function SuccessPayment({
           <DialogDescription className="py-4">
             Seu pagamento de R${transactionAmount} feito no fornecedor{' '}
             {merchantName} foi processado com sucesso. Obrigado por usar
-            FlexPay!
+            Single-player!
           </DialogDescription>
         </DialogContent>
       </Dialog>

@@ -74,8 +74,8 @@ export default function Payment() {
         body: JSON.stringify({ bar_code: barCode }),
       })
       if (response.ok) {
-        const data: PaymentResponse = await response.json()
-
+        const data = await response.json()
+        console.log(data)
         setIsAcceptedBoleto(false)
         setLoadingBoleto(false)
 
